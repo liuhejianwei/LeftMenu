@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="http://kehu.beta.fang.com/Resourse/js/axios.min.js?v=3.0.0"></script>
+    <!--vue-->
+    <script type="text/javascript" src="http://kehu.beta.fang.com/Resourse/js/vue.min.js?v=3.0.0"></script>
+    <!--vue自定定组件-->
+    <script type="text/javascript" src="component/vue.components.js"></script>
+
+
+
+
+    <!--样式-->
+    <link rel="stylesheet" href="http://kehu.beta.fang.com/Resourse/css/work_plat.css">
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div class="left_menu" style="height: 796px; opacity: 1; left: 0px;">
+            <leftmenu :list="list"></leftmenu>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: '#box',
+            methods: {
+                getdate: function () {
+                    var that = this;
+
+                    axios.get("data/data.json?dfsa", {})
+                        .then(function (res) {
+                            that.list = res.data;
+                            for (var i = 0; i < that.list.length; i++) {
+                                that.list[i].show = 'display:none';
+                            }
+
+                        });
+                }
+            },
+            data: {
+                list: []
+            },
+            mounted: function () {
+                this.getdate();
+            }
+        });
+    </script>
+</body>
+
+</html>
